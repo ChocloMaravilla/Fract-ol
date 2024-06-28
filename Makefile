@@ -1,5 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rmedina- <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/06/26 14:31:14 by rmedina-          #+#    #+#              #
+#    Updated: 2024/06/26 15:28:55 by rmedina-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = fractol
-SRC = src/fractol_main.c src/fractol_checking.c src/fractol_mlx_function.c
+SRC = src/fractol_main.c\
+	  src/fractol_checking.c\
+	  src/fractol_mlx_function.c\
+	  src/fractol_draw.c\
+	  src/fractol_color.c
 OBJS = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra

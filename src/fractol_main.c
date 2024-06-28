@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   fractol_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:10 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/06/16 03:47:15 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:28:19 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_header.h"
+
+double ft_atod(char *num)
+{
+	int i;
+	int sign;
+	double nbr;
+
+	i = 0;
+	sign = -1;
+	nbr = 0;
+	if(num[0])
+	{
+		sign = -1;
+		i++;
+	}
+	while(num[i])
+	{
+		nbr = nbr * 10 + num[i] - '0';
+		i++;
+	}
+	return (nbr * sign);
+}
 
 int invalid_arg(char *arg1){
 	int i;
@@ -38,31 +60,52 @@ int invalid_arg(char *arg1){
 
 int checking_arg(int argc, char **argv)
 {
+	int type_of_set;
+
+	if(argv[1] == NULL)
+		return (1);
 	lower_case_converter(argv[1]);
-	if(!(checking_type_of_set(argv[1])))
-		return (0);
-	else if(checking_type_of_set(argv[1]) == 1 && argc == 4)
+	type_of_set = checking_type_of_set(argv[1]);
+	if(!type_of_set)
+		return (1);
+	if (type_of_set == 2 && argc == 4)
 	{	
 		if(!argv[2] || !argv[3])
 			return (1);
 		if(invalid_arg(argv[2]) || invalid_arg(argv[3]))
 			return (1);
+		return (0);
 	}
-	else if(checking_type_of_set(argv[1]) == 2)	
+	else if(type_of_set == 3 && argc == 2)	
 		return (0);
-	else if(checking_type_of_set(argv[1]) == 3)
+	else if(type_of_set == 4 && argc == 2)
 		return (0);
-	return (0);
+	return (1);
 }
 
 int main(int argc, char **argv)
 {
-	t_win win;
+	t_fract fractal;
+	t_img img;
 
 	if(argc < 1)
 		return(1);
 	if(checking_arg(argc, argv))
 		exit(1);
-	init_win(&win, argv[1]);
+	init_win(&fractal, &img, argv);
+	fractal.img_ptr = &img;
+	fractal.iter = ITER;
+	init_limits(&fractal.matrix);
+	if(checking_type_of_set(argv[1]) == 2)
+		return (0);
+		//draw_julia(&fractal);
+	else if(checking_type_of_set(argv[1]) == 3)
+		draw_mandelbrot(&fractal);
+	else if(checking_type_of_set(argv[1]) == 4)
+		return (0);
+		//draw_tricorn();
+	
+	mlx_put_image_to_window(fractal.mlx_ptr, fractal.win_ptr, img.img, 0, 0);
+	mlx_loop(fractal.mlx_ptr);
 	return (0);
 }

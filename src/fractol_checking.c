@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   fractol_checking.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 20:52:25 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/06/16 03:47:25 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/06/24 21:12:10 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ int	checking_err(char *str)
 int checking_type_of_set(char *str)
 {
 	if(!ft_strcmp(str, "julia"))
-		return (1);
-	if(!ft_strcmp(str, "mandelbrot"))
 		return (2);
-	if(!ft_strcmp(str, "tricorn"))
+	if(!ft_strcmp(str, "mandelbrot"))
 		return (3);
+	if(!ft_strcmp(str, "tricorn"))
+		return (4);
 	return (0);
 }
 
