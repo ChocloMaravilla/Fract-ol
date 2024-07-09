@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:30 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/06/28 19:26:08 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/09 17:02:08 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 # define WIDTH 1000
 # define HEIGHT	1000
-# define ITER 50
+# define NOT_IN_RANGE 2147483647
+# define ITER 100
 # define TURQUESA 0x03FC90
 # define ROSE 0xFC036F
 

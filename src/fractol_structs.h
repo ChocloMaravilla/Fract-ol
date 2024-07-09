@@ -19,10 +19,10 @@ typedef struct s_img
 
 typedef struct s_screen
 {	
-	int	im_x;
-	int fi_x;
-	int im_y;
-	int fi_y;
+	float	im_x;
+	float	fi_x;
+	float	im_y;
+	float	fi_y;
 } t_screen;
 
 typedef struct s_position
@@ -40,6 +40,8 @@ typedef struct s_fract
 	t_screen	matrix;
 	t_position	c;
 	t_position	z;
+	float		real_julia;
+	float		im_julia;
 }	t_fract;	
 
 #endif

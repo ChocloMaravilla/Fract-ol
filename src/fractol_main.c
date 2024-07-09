@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:10 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/06/28 19:28:19 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:58:13 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double ft_atod(char *num)
 	i = 0;
 	sign = -1;
 	nbr = 0;
-	if(num[0])
+	if (num[0])
 	{
 		sign = -1;
 		i++;
@@ -40,18 +40,24 @@ int invalid_arg(char *arg1){
 
 	if (!arg1 || arg1[0] == '\0')
 		return (1);
-	i = 0;
 	flag = 0;
+	i = 0;
+	if (arg1[0] == '-' || arg1[0] == '+')
+		i++;
+	/*wihle (sea digit(arg1[i]))
+	{
+		i++;
+	}*/
 	while(arg1[i])
 	{
-		if((arg1[i] == '.' && flag == 1) ||\
+		if ((arg1[i] == '.' && flag == 1) ||\
 		(arg1[i] == '.' && arg1[i + 1] == '\0'))
 			return (1);
-		if(checking_symbols(arg1[i]))
+		if (checking_symbols(arg1[i]))
 			return (1);
-		if(checking_err(arg1))
+		if (checking_err(arg1))
 			return (1);
-		if(arg1[i] == '.')
+		if (arg1[i] == '.')
 			flag = 1;
 		i++;
 	}
@@ -62,11 +68,11 @@ int checking_arg(int argc, char **argv)
 {
 	int type_of_set;
 
-	if(argv[1] == NULL)
+	if (argv[1] == NULL)
 		return (1);
 	lower_case_converter(argv[1]);
 	type_of_set = checking_type_of_set(argv[1]);
-	if(!type_of_set)
+	if (!type_of_set)
 		return (1);
 	if (type_of_set == 2 && argc == 4)
 	{	
@@ -76,32 +82,30 @@ int checking_arg(int argc, char **argv)
 			return (1);
 		return (0);
 	}
-	else if(type_of_set == 3 && argc == 2)	
+	else if (type_of_set == 3 && argc == 2)	
 		return (0);
-	else if(type_of_set == 4 && argc == 2)
+	else if (type_of_set == 4 && argc == 2)
 		return (0);
 	return (1);
 }
 
 int main(int argc, char **argv)
 {
-	t_fract fractal;
-	t_img img;
+	t_fract	fractal;
+	t_img	img;
 
-	if(argc < 1)
+	if (argc < 1)
 		return(1);
-	if(checking_arg(argc, argv))
+	if (checking_arg(argc, argv))
 		exit(1);
-	init_win(&fractal, &img, argv);
-	fractal.img_ptr = &img;
-	fractal.iter = ITER;
 	init_limits(&fractal.matrix);
-	if(checking_type_of_set(argv[1]) == 2)
+	init_win(&fractal, &img, argv);
+	if (checking_type_of_set(argv[1]) == 2)
 		return (0);
 		//draw_julia(&fractal);
-	else if(checking_type_of_set(argv[1]) == 3)
+	else if (checking_type_of_set(argv[1]) == 3)
 		draw_mandelbrot(&fractal);
-	else if(checking_type_of_set(argv[1]) == 4)
+	else if (checking_type_of_set(argv[1]) == 4)
 		return (0);
 		//draw_tricorn();
 	
