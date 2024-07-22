@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:10 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/09 16:58:13 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/22 19:56:12 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,25 @@ double ft_atod(char *num)
 
 int invalid_arg(char *arg1){
 	int i;
-	int flag;
+	int j;
+	/*int flag;*/
+	char buf[2];
 
 	if (!arg1 || arg1[0] == '\0')
 		return (1);
-	flag = 0;
+	/*flag = 0;*/
 	i = 0;
-	if (arg1[0] == '-' || arg1[0] == '+')
+	j = 0;
+	if (is_in_buffer(arg1[i]))
+	{
+		buf[j] == arg1[i];
+		j++;
+:q
+:q
+exit
 		i++;
-	/*wihle (sea digit(arg1[i]))
+	}
+	/*while (sea digit(arg1[i]))
 	{
 		i++;
 	}*/
@@ -59,6 +69,19 @@ int invalid_arg(char *arg1){
 			return (1);
 		if (arg1[i] == '.')
 			flag = 1;
+		i++;
+	}
+	return (0);
+}
+int is_in_buffer(char *buf, char c)
+{
+	int i;
+
+	i = 0
+	while(buf[i])
+	{
+		if(buf[i] && buf[i] == c)
+			return (1);
 		i++;
 	}
 	return (0);
