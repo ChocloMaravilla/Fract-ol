@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 20:52:25 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/24 14:42:37 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:53:20 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int checking_type_of_set(char *str)
 		return (2);
 	if(!ft_strcmp(str, "mandelbrot"))
 		return (3);
-	if(!ft_strcmp(str, "tricorn"))
-		return (4);
 	return (0);
 }
 

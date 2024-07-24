@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:10 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/24 15:53:37 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:54:24 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int checking_arg(int argc, char **argv)
 	type_of_set = checking_type_of_set(argv[1]);
 	if (!type_of_set)
 		return (1);
-	if (type_of_set == 2 && argc == 4)
+	if (type_of_set == 2)
 	{	
 		if(!argv[2] || !argv[3])
 			return (1);
@@ -91,8 +91,6 @@ int checking_arg(int argc, char **argv)
 		return (0);
 	}
 	else if (type_of_set == 3 && argc == 2)	
-		return (0);
-	else if (type_of_set == 4 && argc == 2)
 		return (0);
 	return (1);
 }
@@ -110,13 +108,9 @@ int main(int argc, char **argv)
 	init_win(&fractal, &img, argv);
 	if (checking_type_of_set(argv[1]) == 2)
 		return (0);
-		//draw_julia(&fractal);
+	//draw_julia(&fractal);
 	else if (checking_type_of_set(argv[1]) == 3)
 		draw_mandelbrot(&fractal);
-	else if (checking_type_of_set(argv[1]) == 4)
-		return (0);
-		//draw_tricorn();
-	
 	mlx_put_image_to_window(fractal.mlx_ptr, fractal.win_ptr, img.img, 0, 0);
 	mlx_loop(fractal.mlx_ptr);
 	return (0);
