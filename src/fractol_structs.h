@@ -27,8 +27,8 @@ typedef struct s_screen
 
 typedef struct s_position
 {
-	float	real;
-	float	im;
+	double	real;
+	double	im;
 }	t_position;
 
 typedef struct s_fract
@@ -44,4 +44,10 @@ typedef struct s_fract
 	float		im_julia;
 }	t_fract;	
 
+/*my structs out of fractol*/
+typedef struct s_var
+{
+	int i;
+	int j;
+}	t_var;
 #endif

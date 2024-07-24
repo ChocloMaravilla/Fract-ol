@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 20:52:25 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/06/24 21:12:10 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:42:37 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	checking_symbols(char arg)
 		return (1);
 }
 
-int	checking_err(char *str)
+int	checking_next_char(char *str)
 {
 	int i;
 

@@ -6,16 +6,14 @@
 #    By: rmedina- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 14:31:14 by rmedina-          #+#    #+#              #
-#    Updated: 2024/06/26 15:28:55 by rmedina-         ###   ########.fr        #
+#    Updated: 2024/07/24 18:22:07 by rmedina-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 NAME = fractol
 SRC = src/fractol_main.c\
 	  src/fractol_checking.c\
 	  src/fractol_mlx_function.c\
-	  src/fractol_draw.c\
-	  src/fractol_color.c
+	  src/fractol_draw.c
 OBJS = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
@@ -30,7 +28,7 @@ makemlx:
 $(NAME): $(OBJS) $(LIBFT_A) $(MLX_A)
 	${CC} $(CFLAGS) $(OBJS) $(LIBFT_A) $(MLX_A) -lXext -lX11 -lm -lz -o $(NAME)
 # -L mlx_test -I mlx_test
-%.o:%.c Makefile fractol_macros.h fractol_structs.h
+%.o:%.c Makefile fractol_structs.h
 	${CC} $(CFLAGS) -c $< -o $@
 # -Imlx_linux/mlx.h
 clean:
