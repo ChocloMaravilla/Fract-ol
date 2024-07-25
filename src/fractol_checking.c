@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 20:52:25 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/24 18:53:20 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:45:55 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int ft_strcmp(char *s1, char *s2)
 int	checking_symbols(char arg)
 {
 	if(arg == '-' || arg == '+'|| arg == '.')
-		return (0);
-	else if(arg >= '0' && arg <= '9')
-		return (0);
-	else 
 		return (1);
+	else if(arg >= '0' && arg <= '9')
+		return (1);
+	else 
+		return (0);
 }
 
 int	checking_next_char(char *str)

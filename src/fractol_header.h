@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:30 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/24 18:13:48 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:59:53 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ int			proportional_color(int percentage, int color, int max_color);
 t_position	matrix_pos(t_pixel pos, t_screen screen);
 int			is_in_buffer(char *buf, char c);
 t_position	position_in_square(t_pixel position, t_screen square);
+void		draw_julia(t_fract *vars, char *arg1, char *arg2);
 #endif
