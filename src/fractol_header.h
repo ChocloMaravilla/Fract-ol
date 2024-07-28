@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:30 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/25 15:59:53 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/28 03:59:57 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@
 # define ITER 100
 # define TURQUESA 0x03FC90
 # define ROSE 0xFC036F
+# define B_Escape 65307
+# define B_Left 65361
+# define B_Up 65362
+# define B_Right 65363
+# define B_Down 65364
+# define B_A 97
+# define B_W 119
+# define B_D 100
+# define B_S 115
+# define B_Cross 17
 
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			checking_type_of_set(char *str);
@@ -37,7 +47,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(char *s1, char *s2);
 int			checking_symbols(char arg);
 int			checking_next_char(char *str);
-void		init_win(t_fract *win, t_img *img, char **argv);
+void		init_win(t_fract *win, t_img *img);
 void		init_limits(t_screen *screen);
 int			iteration_to_scape(t_position c, t_position z, int iter);
 double		ft_atod(char *num);
@@ -46,7 +56,9 @@ void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int			proportional_trgb(int percentage, int color, int max_color);
 int			proportional_color(int percentage, int color, int max_color);
 t_position	matrix_pos(t_pixel pos, t_screen screen);
-int			is_in_buffer(char *buf, char c);
 t_position	position_in_square(t_pixel position, t_screen square);
 void		draw_julia(t_fract *vars, char *arg1, char *arg2);
+void 		malloc_err(void);
+//int 		key_handler(int keysym, t_fract *fractal);
+//static void events_init(t_fract *fractal);
 #endif

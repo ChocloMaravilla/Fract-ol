@@ -33,6 +33,7 @@ typedef struct s_position
 
 typedef struct s_fract
 {
+	char 		*name;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		*img_ptr;
@@ -42,6 +43,8 @@ typedef struct s_fract
 	t_position	z;
 	float		real_julia;
 	float		im_julia;
+	double		button_x;
+	double		button_y;
 }	t_fract;	
 
 /*my structs out of fractol*/

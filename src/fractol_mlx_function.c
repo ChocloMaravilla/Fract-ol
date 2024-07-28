@@ -1,37 +1,73 @@
-/* ************************************************************************** */
-/*                                                                            */
+/* ************************************************************************** */ /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fractol_mlx_function.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmedina- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 20:48:22 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/24 18:21:39 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/28 00:12:42 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "fractol_header.h"
 
-void init_win(t_fract *win, t_img *img,char **argv)
+/*static void events_init(t_fract *fractal)
+{
+	mlx_hook(fractal->win_ptr, 
+			KeyPress, KeyPressMask, key_handler, fractal);
+	mlx_hook(fractal->win_ptr, \
+			ButtonPress, ButtonPressMask, mouse_handler, fractal);
+	mlx_hook(fractal->win_ptr \
+			DestroyNotify, StructureNotifyMask, close_handler, fractal);
+	
+			
+}*/
+
+void malloc_err(void)
+{
+	write(1,"ERROR MALLOC\n",13);
+	exit(EXIT_FAILURE);
+}
+
+void init_win(t_fract *win, t_img *img)
 {
 	win->mlx_ptr = mlx_init();
-	win->win_ptr = mlx_new_window(win->mlx_ptr, HEIGHT, WIDTH, argv[1]);
+	if(win->mlx_ptr == NULL)
+		malloc_err();
+	win->win_ptr = mlx_new_window(win->mlx_ptr, HEIGHT, WIDTH, win->name);
+	if(win->win_ptr == NULL)
+	{
+		mlx_destroy_display(win->mlx_ptr);
+		free(win->mlx_ptr);
+		malloc_err();
+	}
 	img->img = mlx_new_image(win->mlx_ptr, WIDTH, HEIGHT);
+	if(img->img == NULL)
+	{
+		mlx_destroy_window(win->mlx_ptr, win->win_ptr);
+		mlx_destroy_display(win->mlx_ptr);
+		free(win->mlx_ptr);
+		malloc_err();
+	}
 	img->addr= mlx_get_data_addr(img->img, &img->bits_per_pixel\
 			, &img->line_length, &img->endian);
 	win->img_ptr = img;
 	win->iter = ITER;
+	win->button_x = 0.0;
+	win->button_y = 0.0;
+//	events_init(win);
 }
 
 t_position	position_in_square(t_pixel position, t_screen square)
 {
 	t_position	scale;
+	//t_fract fractal;
 
 	scale.real = (position.x - 0) * (square.fi_x - square.im_x) / (WIDTH - 0)
-		+ square.im_x;
+		+ square.im_x /*+ fractal.button_x*/;
 	scale.im = (position.y - 0) * (square.fi_y - square.im_y) / (HEIGHT - 0)
-		+ square.im_y;
+		+ square.im_y /*+ fractal.button_y*/;
 
 	return (scale);
 }
@@ -43,3 +79,5 @@ void	init_limits(t_screen *square)
 	square->im_y = -1;
 	square->fi_y =  1;
 }
+
+
