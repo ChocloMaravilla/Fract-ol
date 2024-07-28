@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:10 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/28 02:15:43 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/28 19:54:43 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,16 @@ int main(int argc, char **argv)
 	if (checking_arg(argc, argv))
 		exit(1);
 	fractal.name = argv[1];
-	init_limits(&fractal.matrix);
+	fractal.button_x = 0.0f;
+	fractal.button_y = 0.0f;
+	init_limits(&fractal);
 	init_win(&fractal, &img);
 	if (checking_type_of_set(argv[1]) == 2)
 		draw_julia(&fractal, argv[2], argv[3]);
 	else if (checking_type_of_set(argv[1]) == 3)
 		draw_mandelbrot(&fractal);
 	mlx_put_image_to_window(fractal.mlx_ptr, fractal.win_ptr, img.img, 0, 0);
-	mlx_loop(fractal.mlx_ptr);
+	events_init(&fractal, img);
 	printf("exit\n");
 	return (0);
 }

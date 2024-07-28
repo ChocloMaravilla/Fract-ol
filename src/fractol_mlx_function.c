@@ -12,17 +12,12 @@
 
 #include "fractol_header.h"
 
-/*static void events_init(t_fract *fractal)
+void events_init(t_fract *fractal, t_img img )
 {
-	mlx_hook(fractal->win_ptr, 
-			KeyPress, KeyPressMask, key_handler, fractal);
-	mlx_hook(fractal->win_ptr, \
-			ButtonPress, ButtonPressMask, mouse_handler, fractal);
-	mlx_hook(fractal->win_ptr \
-			DestroyNotify, StructureNotifyMask, close_handler, fractal);
-	
-			
-}*/
+	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win_ptr, img.img, 0, 0);
+	mlx_key_hook(fractal->win_ptr, key_hook, fractal);
+	mlx_loop(fractal->mlx_ptr);
+}
 
 void malloc_err(void)
 {
@@ -54,30 +49,26 @@ void init_win(t_fract *win, t_img *img)
 			, &img->line_length, &img->endian);
 	win->img_ptr = img;
 	win->iter = ITER;
-	win->button_x = 0.0;
-	win->button_y = 0.0;
-//	events_init(win);
 }
 
 t_position	position_in_square(t_pixel position, t_screen square)
 {
 	t_position	scale;
-	//t_fract fractal;
-
+	
 	scale.real = (position.x - 0) * (square.fi_x - square.im_x) / (WIDTH - 0)
-		+ square.im_x /*+ fractal.button_x*/;
+		+ square.im_x;
 	scale.im = (position.y - 0) * (square.fi_y - square.im_y) / (HEIGHT - 0)
-		+ square.im_y /*+ fractal.button_y*/;
+		+ square.im_y;
 
 	return (scale);
 }
 
-void	init_limits(t_screen *square)
+void	init_limits(t_fract *f)
 {
-	square->im_x = -1;
-	square->fi_x =  1;
-	square->im_y = -1;
-	square->fi_y =  1;
+	f->matrix.im_x =  -2 + 0.5;
+	f->matrix.fi_x =  2 + 0.5;
+	f->matrix.im_y = -2;
+	f->matrix.fi_y =  2;
 }
 
 

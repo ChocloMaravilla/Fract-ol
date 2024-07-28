@@ -6,7 +6,7 @@
 /*   By: rmedina- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 17:07:06 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/28 00:46:52 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/28 23:35:00 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,13 @@ void		draw_mandelbrot(t_fract *vars)
 	int		count;
 
 	px.y = 0;
+	px.x = 0;
+	c = position_in_square(px, vars->matrix);
+	printf("matrix im_x: %.2f\n", vars->matrix.im_x);
+	printf("matrix fi_x: %.2f\n", vars->matrix.fi_x);
+	printf("matrix im_y: %.2f\n", vars->matrix.im_y);
+	printf("matrix fi_y: %.2f\n", vars->matrix.fi_y);
+	printf("draw x: %.2f | y: %.2f\n", c.real, c.im);
 	while (px.y < HEIGHT)
 	{
 		px.x = 0;
@@ -91,15 +98,15 @@ void		draw_mandelbrot(t_fract *vars)
 			c = position_in_square(px, vars->matrix);
 			z.real = 0.0;
 			z.im = 0.0;
-			count = iteration_to_scape(c, z, vars->iter);
-			if (count != 2147483647)
-				px.color = proportional_color(
-					count * 1000 / vars->iter, TURQUESA, ROSE);
-			else
-				px.color = TURQUESA;
-			my_mlx_pixel_put(vars->img_ptr, px.x, px.y, px.color);
-			px.x += 1;
+				count = iteration_to_scape(c, z, vars->iter);
+				if (count != 2147483647)
+					px.color = proportional_color(
+						count * 1000 / vars->iter, AZUL, TURQUESA);
+				else
+					px.color = AZUL;
+				my_mlx_pixel_put(vars->img_ptr, px.x, px.y, px.color);
+				px.x += 1;
+			}
+			px.y += 1;
 		}
-		px.y += 1;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: rmedina- <rmedina-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 19:04:30 by rmedina-          #+#    #+#             */
-/*   Updated: 2024/07/28 03:59:57 by rmedina-         ###   ########.fr       */
+/*   Updated: 2024/07/28 23:42:10 by rmedina-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,17 @@
 # define WIDTH 1000
 # define HEIGHT	1000
 # define NOT_IN_RANGE 2147483647
-# define ITER 100
+# define ITER 50
 # define TURQUESA 0x03FC90
 # define ROSE 0xFC036F
+# define AZUL 0x0073e6
 # define B_Escape 65307
 # define B_Left 65361
 # define B_Up 65362
 # define B_Right 65363
 # define B_Down 65364
+# define B_Plus 61
+# define B_Minus 45
 # define B_A 97
 # define B_W 119
 # define B_D 100
@@ -48,7 +51,7 @@ int			ft_strcmp(char *s1, char *s2);
 int			checking_symbols(char arg);
 int			checking_next_char(char *str);
 void		init_win(t_fract *win, t_img *img);
-void		init_limits(t_screen *screen);
+void		init_limits(t_fract *f);
 int			iteration_to_scape(t_position c, t_position z, int iter);
 double		ft_atod(char *num);
 void		draw_mandelbrot(t_fract *vars);
@@ -59,6 +62,6 @@ t_position	matrix_pos(t_pixel pos, t_screen screen);
 t_position	position_in_square(t_pixel position, t_screen square);
 void		draw_julia(t_fract *vars, char *arg1, char *arg2);
 void 		malloc_err(void);
-//int 		key_handler(int keysym, t_fract *fractal);
-//static void events_init(t_fract *fractal);
+int 		key_hook(int keycode, t_fract *fractal);
+void 		events_init(t_fract *fractal, t_img img);
 #endif
